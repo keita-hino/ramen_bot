@@ -26,12 +26,33 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: event.message['text']
-          }
-          client.reply_message(event['replyToken'], message)
+          case event.message['text']
+          when '入力','write'
+            menu = Linemenu.new
+            message = menu.get_search_form
+            # message = {
+            #   type: 'text',
+            #   text: 'write'
+            # }
+            client.reply_message(event['replyToken'], message)
+          when '読み取り','参照','read'
+            message = {
+              type: 'text',
+              text: 'read'
+            }
+            client.reply_message(event['replyToken'], message)
+          end
         end
+      when Line::Bot::Event::Follow
+         user_id = event["source"]["userId"]
+         # unless Lineuser.exists?(userid:user_id)
+           lineuser = Lineuser.new(userid: user_id)
+           lineuser.save
+         # end
+       # ブロックされた時の処理
+       when Line::Bot::Event::Unfollow
+         user_id = event["source"]["userId"]
+         Lineuser.where(userid: user_id).delete_all
       end
     }
 
