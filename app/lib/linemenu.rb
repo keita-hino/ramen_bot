@@ -23,7 +23,7 @@ class Linemenu
                   action: {
                     type: "uri",
                     label: "入力画面へ",
-                    uri: ENV['LIFF_URL']
+                    uri: ENV['RAMEN_LIFF_URL']
                   }
                 }
               ]
