@@ -58,4 +58,8 @@ class LinebotController < ApplicationController
 
     head :ok
   end
+
+  def write
+  end
+
 end
