@@ -45,7 +45,7 @@ br {
 }
  .body-margin {
    max-width: 480px;
-   width: 60%;
+   width: 65%;
    margin: 0 auto;
    background-color: #ffffff;
    padding: 10px;
@@ -82,4 +82,15 @@ br {
     letter-spacing: 0.4px;
     line-height: 1;
     outline: none !important;
+  }
+  textarea {
+    resize: vertical;
+  }
+  h2 {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: normal;
+    color: #777;
   }
