@@ -41,6 +41,12 @@ class LinebotController < ApplicationController
               text: 'read'
             }
             client.reply_message(event['replyToken'], message)
+          else
+            message = {
+              type: "text",
+              text: event["message"]["text"]
+            }
+            client.reply_message(event['replyToken'], message)
           end
         end
       when Line::Bot::Event::Follow
@@ -60,7 +66,33 @@ class LinebotController < ApplicationController
     head :ok
   end
 
-  def write
+  def new
+    @food = Foodrecord.new
+    @taste_list = ["醤油","味噌","とんこつ","塩"]
+    @thickness_list = ["細麺","中太麺","太麺"]
+    @hardness_list = ["硬め","柔らかめ"]
+    @taste_intensity_list = ["こってり","あっさり"]
+    @evalute_list = []
+    r = 1..10
+    r.each{|i| @evalute_list.push(i.to_f / 2)}
+    # @food.save
   end
+
+  def create
+    puts "●"
+    # @food = Foodrecord.new(user_params)
+    # if @food.save
+    #   redirect_to @food
+    # else
+    #   render 'new'
+    # end
+  end
+
+  # private
+  #
+  #   def user_params
+  #     params["foodrecord"].require(:store_name).permit(:menu_name, :taste, :thickness,
+  #                                  :hardness,:taste_intensity,:evalute)
+  #   end
 
 end
