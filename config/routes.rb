@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   post '/callback' => 'linebot#callback'
-  get '/write' => 'linebot#write'
+  get '/new' => 'linebot#new'
+  post '/foodrecords' => 'linebot#create'
 end
