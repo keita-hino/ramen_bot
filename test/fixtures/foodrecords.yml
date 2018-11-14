@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store_name: MyString
+  menu_name: MyString
+  taste: MyString
+  thickness: MyString
+  hardness: MyString
+  taste_intensity: MyString
+  evalute: 1
+
+two:
+  store_name: MyString
+  menu_name: MyString
+  taste: MyString
+  thickness: MyString
+  hardness: MyString
+  taste_intensity: MyString
+  evalute: 1
