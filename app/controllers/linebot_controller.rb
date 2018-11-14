@@ -79,20 +79,19 @@ class LinebotController < ApplicationController
   end
 
   def create
-    puts "●"
-    # @food = Foodrecord.new(user_params)
-    # if @food.save
-    #   redirect_to @food
-    # else
-    #   render 'new'
-    # end
+    @food = Foodrecord.new(user_params)
+    if @food.save
+      # redirect_to @food
+    else
+      render 'new'
+    end
   end
 
-  # private
-  #
-  #   def user_params
-  #     params["foodrecord"].require(:store_name).permit(:menu_name, :taste, :thickness,
-  #                                  :hardness,:taste_intensity,:evalute)
-  #   end
+  private
+
+    def user_params
+      params.require(:foodrecord).permit(:store_name,:menu_name, :taste, :thickness,
+                                   :hardness,:taste_intensity,:evalute)
+    end
 
 end
