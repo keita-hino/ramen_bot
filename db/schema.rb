@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181113060624) do
+ActiveRecord::Schema.define(version: 20181115051321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20181113060624) do
     t.integer "evalute"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "lineuser_id"
+    t.index ["lineuser_id"], name: "index_foodrecords_on_lineuser_id"
   end
 
   create_table "lineusers", force: :cascade do |t|
