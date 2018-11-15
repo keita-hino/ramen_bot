@@ -91,7 +91,7 @@ class LinebotController < ApplicationController
 
     def user_params
       params.require(:foodrecord).permit(:store_name,:menu_name, :taste, :thickness,
-                                   :hardness,:taste_intensity,:evalute)
+                                   :hardness,:taste_intensity,:evalute,:lineuser_id)
     end
 
 end
