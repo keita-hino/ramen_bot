@@ -5,7 +5,7 @@
         <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
     </head>
 
-    <body onload="init_list()">
+    <body>
       <div class="contact-clean">
         <div class="body-margin">
           <h2 class="text-center">入力画面</h2>
@@ -31,140 +31,21 @@
               <%= f.label :"総合評価" %>
               <%= select_tag :evalute, options_for_select(@evalute_list),prompt:"選択してください" %><br>
 
+              <%= f.hidden_field :lineuser_id, :value => "shampoo.id" %>
+
               <%= f.submit "登録", class: "btn btn-primary" %>
             <% end %>
 
-          <!-- <form>
-            <span class="text-margin">
-              <label for="name1">店名</label>
-              <input name="textBox1" id="id_textBox1" size="30" type="text" value="" placeholder="例)みっしゅう屋">
-            </span>
-            <span class="text-margin">
-              <label for="name1">メニュー名</label>
-              <input name="textBox1" id="id_textBox2" size="30" type="text" value="" placeholder="例)みっしゅうラーメン">
-            </span>
-            <div class="text-margin">
-              <label for="name1">スープの味</label><br>
-              <span class="select-margin">
-                <select id="taste_genre"></select><br>
-              </span>
-              <label for="name1">麺の太さ</label><br>
-              <span class="select-margin">
-                <select id="yahoo_genre">
-                  <option value=“59”>sample2
-                </select><br>
-              </span>
-              <label for="name1">レビュー</label><br>
-              <span class="select-margin">
-                <select id="yahoo_genre">
-                  <option value=“59”>sample3
-                </select><br>
-              </span>
-              <span class="text-margin">
-                <label for="name1">場所</label>
-                <input name="textBox1" id="id_textBox2" size="30" type="text" value="" />
-              </span>
-              <span class="text-margin">
-                <label for="name1">画像アップロード</label>
-                <input type="file" name="upfile" size="30" id="upfile" value=""/>
-              </span>
-            </div>
-            <button class="btn" onclick='clicked()'>登録</button>
-          </form> -->
-
-
-
-
-
-
-
-          <!-- <form>
-            <span class="text-margin">
-              <label for="name1">店名</label>
-              <input name="textBox1" id="id_textBox1" size="30" type="text" value="" placeholder="例)みっしゅう屋">
-            </span>
-            <span class="text-margin">
-              <label for="name1">メニュー名</label>
-              <input name="textBox1" id="id_textBox2" size="30" type="text" value="" placeholder="例)みっしゅうラーメン">
-            </span>
-            <div class="text-margin">
-              <label for="name1">スープの味</label><br>
-              <span class="select-margin">
-                <select id="taste_genre"></select><br>
-              </span>
-              <label for="name1">麺の太さ</label><br>
-              <span class="select-margin">
-                <select id="yahoo_genre">
-                  <option value=“59”>sample2
-                </select><br>
-              </span>
-              <label for="name1">レビュー</label><br>
-              <span class="select-margin">
-                <select id="yahoo_genre">
-                  <option value=“59”>sample3
-                </select><br>
-              </span>
-              <span class="text-margin">
-                <label for="name1">場所</label>
-                <input name="textBox1" id="id_textBox2" size="30" type="text" value="" />
-              </span>
-              <span class="text-margin">
-                <label for="name1">画像アップロード</label>
-                <input type="file" name="upfile" size="30" id="upfile" value=""/>
-              </span>
-            </div>
-            <button class="btn" onclick='clicked()'>登録</button>
-          </form> -->
         </div>
       </div>
 
-
-
         <script>
-
-          window.onload = function () {
-            get_list();
-            for(key in taste_list){
-              let op = document.createElement("option");
-              op.value = key;  //value値
-              op.text = taste_list[key];   //テキスト値
-              document.getElementById("taste_genre").appendChild(op);
-            }
-            // alert(document.getElementById("upfile"));
-
-          };
-
-
-          // function get_taste_list() {
-          //   // init_list();
-          //
-          //   for(key in taste_list){
-          //     let op = document.createElement("option");
-          //     op.value = key;  //value値
-          //     op.text = taste_list[key];   //テキスト値
-          //     document.getElementById("taste_genre").appendChild(op);
-          //   }
-          // }
-          // yahooのジャンルをセット
-          // function get_yahoo_list(){
-          //   // init_list();
-          //   for(key in yahoo_list){
-          //     let op = document.createElement("option");
-          //     op.value = key;  //value値
-          //     op.text = yahoo_list[key];   //テキスト値
-          //     document.getElementById("yahoo_genre").appendChild(op);
-          //   }
-          // }
-          // ジャンルを配列にセット
-          function get_list(){
-            taste_list =　["醤油","味噌","とんこつ","塩","醤油とんこつ","味噌とんこつ","塩とんこつ"];
-            // taste_list =　["太麺"."細麺","中太麺"]
-            // rakuten_len = Object.keys(rakuten_list).length
-          }
             liff.init(
               data => {
                 // Now you can call LIFF API
                 const userId = data.context.userId;
+                document.getElementById('foodrecord_lineuser_id').value = userId;
+
                 liff.getProfile()
                 .then(profile => {
                   document.getElementById('user_name').innerText = 'Name : ' + profile.displayName;
@@ -179,21 +60,6 @@
                 // LIFF initialization failed
               }
             );
-            clicked = function(){
-                // if(document.getElementById('id_textBox1').value == "" ){
-                //   window.alert('キーワードを入力してください。');
-                // }else{
-
-                  alert(document.getElementById("upfile"));
-                  liff.sendMessages([
-                    {
-                      type:'text',
-                      text: search_site + value + document.getElementById('id_textBox1').value
-                    }
-                  ])
-                  // liff.closeWindow();
-                // }
-            }
         </script>
     </body>
 
