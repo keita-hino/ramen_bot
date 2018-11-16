@@ -9,7 +9,7 @@
       <div class="contact-clean">
         <div class="body-margin">
           <h2 class="text-center">入力画面</h2>
-            <%= form_for(@food) do |f| %>
+            <%= form_with model: @food do |f| %>
               <%= f.label :"店名" %>
               <%= f.text_field :store_name %><br>
 
