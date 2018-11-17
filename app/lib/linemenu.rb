@@ -1,7 +1,7 @@
 class Linemenu
   # テスト用
   # liffのURLを送信
-  def get_search_form
+  def get_search_form(liff_url,kind)
     {
       type: "flex",
       altText: "this is a flex message",
@@ -22,8 +22,8 @@ class Linemenu
                   height: "sm",
                   action: {
                     type: "uri",
-                    label: "入力画面へ",
-                    uri: ENV['RAMEN_LIFF_URL']
+                    label: "#{kind}画面へ",
+                    uri: liff_url
                   }
                 }
               ]
