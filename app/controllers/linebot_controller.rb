@@ -26,20 +26,13 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
+          menu = Linemenu.new
           case event.message['text']
           when '入力','write'
-            menu = Linemenu.new
-            message = menu.get_search_form
-            # message = {
-            #   type: 'text',
-            #   text: 'write'
-            # }
+            message = menu.get_search_form(ENV['RAMEN_LIFF_URL_CREATE'],"入力")
             client.reply_message(event['replyToken'], message)
           when '読み取り','参照','read'
-            message = {
-              type: 'text',
-              text: 'read'
-            }
+            message = menu.get_search_form(ENV['RAMEN_LIFF_URL_SEARCH'],"参照")
             client.reply_message(event['replyToken'], message)
           else
             message = {
@@ -62,8 +55,11 @@ class LinebotController < ApplicationController
       end
     }
 
-
     head :ok
+  end
+
+  def search
+    @food = Foodrecord.new
   end
 
   def new
