@@ -58,8 +58,21 @@ class LinebotController < ApplicationController
     head :ok
   end
 
+  def show
+    user = Lineuser.find_by_userid(params["foodrecord"]["lineuser_id"])
+    @food = user.foodrecord
+    puts "●#{@food}"
+  end
+
   def search
     @food = Foodrecord.new
+    @taste_list = ["醤油","味噌","とんこつ","塩"]
+    @thickness_list = ["細麺","中太麺","太麺"]
+    @hardness_list = ["硬め","柔らかめ"]
+    @taste_intensity_list = ["こってり","あっさり"]
+    @evalute_list = []
+    r = 1..10
+    r.each{|i| @evalute_list.push(i.to_f / 2)}
   end
 
   def new
