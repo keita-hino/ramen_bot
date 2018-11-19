@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get '/new' => 'linebot#new'
   get '/search' => 'linebot#search'
   post '/foodrecords' => 'linebot#create'
+  get '/show' => 'linebot#show'
 end
