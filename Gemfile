@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'carrierwave'
 gem 'liff_selector' # liff appを管理するgem
 gem 'dotenv-rails'
 gem 'line-bot-api'
