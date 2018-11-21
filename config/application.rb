@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module RamenBot
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
     config.load_defaults 5.1
 
     # Settings in config/environments/* take precedence over those specified here.
