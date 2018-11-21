@@ -29,10 +29,10 @@ class LinebotController < ApplicationController
           menu = Linemenu.new
           case event.message['text']
           when '入力','write'
-            message = menu.get_search_form(ENV['RAMEN_LIFF_URL_CREATE'],"入力")
+            message = menu.search_form(ENV['RAMEN_LIFF_URL_CREATE'],"入力")
             client.reply_message(event['replyToken'], message)
           when '読み取り','参照','read'
-            message = menu.get_search_form(ENV['RAMEN_LIFF_URL_SEARCH'],"参照")
+            message = menu.search_form(ENV['RAMEN_LIFF_URL_SEARCH'],"参照")
             client.reply_message(event['replyToken'], message)
           else
             message = {
@@ -59,9 +59,22 @@ class LinebotController < ApplicationController
   end
 
   def show
-    user = Lineuser.find_by_userid(params["foodrecord"]["lineuser_id"])
-    @food = user.foodrecord
-    puts "●#{@food}"
+    userid = params["foodrecord"]["lineuser_id"]
+    result = Foodrecord.food_search(
+      lineuser_id: userid,
+      store_name: params["foodrecord"]["store_name"],
+      menu_name: params["foodrecord"]["menu_name"],
+      taste: params["foodrecord"]["taste"],
+      thickness: params["foodrecord"]["thickness"],
+      hardness: params["foodrecord"]["hardness"],
+      taste_intensity: params["foodrecord"]["taste_intensity"],
+      evalute: params["foodrecord"]["evalute"]
+    )
+
+    menu = Linemenu.new
+    message = menu.search_result(result)
+
+    client.push_message(userid, message)
   end
 
   def search
@@ -100,7 +113,7 @@ class LinebotController < ApplicationController
 
     def user_params
       params.require(:foodrecord).permit(:store_name,:menu_name, :taste, :thickness,
-                                   :hardness,:taste_intensity,:evalute,:lineuser_id)
+                                   :hardness,:taste_intensity,:evalute,:lineuser_id,:picture)
     end
 
 end
