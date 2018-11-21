@@ -7,12 +7,13 @@
 # Ignore bundler config.
 /.bundle
 
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
+/public/uploads
 /node_modules
 /yarn-error.log
 
