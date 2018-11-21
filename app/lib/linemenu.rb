@@ -35,6 +35,7 @@ class Linemenu
   end
 
   def search_result(food)
+
     {
     type: "flex",
       altText: "this is a flex message",
@@ -48,7 +49,7 @@ class Linemenu
                 type: 'image',
                 size: 'full',
                 aspectRatio: '20:13',
-                url: ENV['RAMEN_PICTURE_PATH'] + v['picture'].to_s
+                url: ENV['RAMEN_PICTURE_PATH'] + v['id'].to_s + "/" + v['picture'].to_s
               },
               body: {
                 type: 'box',
