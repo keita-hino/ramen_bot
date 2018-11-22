@@ -5,10 +5,19 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# 画像圧縮用
+gem 'mini_magick'
+# 画像アップロード用
 gem 'carrierwave'
-gem 'liff_selector' # liff appを管理するgem
-gem 'dotenv-rails'
+
+# liff appを管理するgem
+gem 'liff_selector'
+# LineBot用
 gem 'line-bot-api'
+
+# 環境の管理
+gem 'dotenv-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
 # Use postgresql as the database for Active Record
