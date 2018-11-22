@@ -10,7 +10,8 @@ class Foodrecord < ApplicationRecord
     q = q.where(thickness: thickness)             if thickness.present?
     q = q.where(hardness: hardness)               if hardness.present?
     q = q.where(taste_intensity: taste_intensity) if taste_intensity.present?
-    q = q.where(evalute: evalute)                 if evalute.present?
+    q = q.where(evalute: (evalute).to_f..5)       if evalute.present?
+    q = q.limit(10).order("evalute DESC")
     return q
   end
 
