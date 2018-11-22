@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181119061436) do
+ActiveRecord::Schema.define(version: 20181122050405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20181119061436) do
     t.string "thickness"
     t.string "hardness"
     t.string "taste_intensity"
-    t.integer "evalute"
+    t.decimal "evalute"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "lineuser_id"
