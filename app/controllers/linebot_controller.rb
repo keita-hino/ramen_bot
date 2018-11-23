@@ -91,7 +91,6 @@ class LinebotController < ApplicationController
           user_list.shift
 
           message = Linemenu.share_reply(user_list)
-          # Temp.create(userid:user_id,payload:message)
 
           client.push_message(user_id, message)
         else
@@ -128,9 +127,9 @@ class LinebotController < ApplicationController
     )
 
     message = Linemenu.search_result(result)
-    Temp.create(userid:userid,payload:message)
+    Temp.create(userid:userid,payload:message[1])
 
-    client.push_message(userid, message)
+    client.push_message(userid, message[0])
   end
 
   def search
