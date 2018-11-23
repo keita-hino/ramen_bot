@@ -1,7 +1,7 @@
 class Linemenu
   # テスト用
   # liffのURLを送信
-  def search_form(liff_url,kind)
+  def self.search_form(liff_url,kind)
     {
       type: "flex",
       altText: "this is a flex message",
@@ -34,8 +34,7 @@ class Linemenu
     }
   end
 
-  def search_result(food)
-
+  def self.search_result(food)
     {
     type: "flex",
       altText: "this is a flex message",
@@ -227,9 +226,9 @@ class Linemenu
                     type: 'button',
                     style: 'primary',
                     action: {
-                      type: 'uri',
-                      label: 'シェアする',
-                      uri: 'https://store.shopping.yahoo.co.jp/elephant/880266-a.html'
+                      type: "postback",
+                      label: "シェアする",
+                      data: "share"
                     }
                   },
                   {
@@ -243,4 +242,26 @@ class Linemenu
       }
     }
   end
+
+  def self.share_reply(user)
+    {
+      type: 'text',
+      text: 'シェアする相手を選んでください',
+      quickReply: {
+        items:
+        user.map do |v|
+          {
+          type: 'action',
+          imageUrl: v[:url],
+          action: {
+            type: 'message',
+            label: v[:name],
+            text: "【SHARE】#{v[:name]}"
+          }
+        }
+        end
+      }
+    }
+  end
+
 end
