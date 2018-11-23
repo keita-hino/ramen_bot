@@ -31,7 +31,6 @@
               <%= f.label :"総合評価" %>
               <%= f.select :evalute, options_for_select(@evalute_list),prompt:"選択してください" %><br>
 
-              <%= f.label :"画像" %>
               <%= f.file_field :picture, id: :food_picture %>
 
               <%= f.hidden_field :lineuser_id,id:"userid"%>
