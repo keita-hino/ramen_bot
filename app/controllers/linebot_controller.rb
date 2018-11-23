@@ -26,22 +26,78 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          menu = Linemenu.new
+          # menu = Linemenu.new
           case event.message['text']
           when '入力','write'
-            message = menu.search_form(ENV['RAMEN_LIFF_URL_CREATE'],"入力")
+            message = Linemenu.search_form(ENV['RAMEN_LIFF_URL_CREATE'],"入力")
             client.reply_message(event['replyToken'], message)
           when '読み取り','参照','read'
-            message = menu.search_form(ENV['RAMEN_LIFF_URL_SEARCH'],"参照")
+            message = Linemenu.search_form(ENV['RAMEN_LIFF_URL_SEARCH'],"参照")
             client.reply_message(event['replyToken'], message)
+          when /【SHARE】/
+            user_id = event["source"]["userId"]
+            keyword = event.message['text']
+            pat = /(【.*】)(.*)/
+            keyword =~ pat
+            share_id = ""
+
+            a = Lineuser.all
+
+            a.map do |v|
+              response = client.get_profile(v.userid)
+              case response
+              when Net::HTTPSuccess then
+                contact = JSON.parse(response.body)
+                if $2 == contact['displayName']
+                  share_id = v.userid
+                  break
+                end
+              else
+                p "#{response.code} #{response.body}"
+              end
+            end
+
+            message = Temp.find_by_userid(user_id)
+
+            client.push_message(share_id, message.payload)
+            Temp.where(userid: user_id).delete_all
+
           else
             message = {
               type: "text",
               text: event["message"]["text"]
             }
+
             client.reply_message(event['replyToken'], message)
           end
         end
+      when Line::Bot::Event::Postback
+        case events[0]["postback"]["data"]
+        when "share"
+          user_list = [{}]
+          user_id = event["source"]["userId"]
+          a = Lineuser.all
+
+          a.map do |v|
+            response = client.get_profile(v.userid)
+            case response
+            when Net::HTTPSuccess then
+              contact = JSON.parse(response.body)
+              user_list.push({name:contact['displayName'],url:contact['pictureUrl']})
+            else
+              p "#{response.code} #{response.body}"
+            end
+          end
+          user_list.shift
+
+          message = Linemenu.share_reply(user_list)
+          # Temp.create(userid:user_id,payload:message)
+
+          client.push_message(user_id, message)
+        else
+
+        end
+
       when Line::Bot::Event::Follow
          user_id = event["source"]["userId"]
          # unless Lineuser.exists?(userid:user_id)
@@ -61,25 +117,25 @@ class LinebotController < ApplicationController
   def show
     userid = params["foodrecord"]["lineuser_id"]
     result = Foodrecord.food_search(
-      lineuser_id: userid,
-      store_name: params["foodrecord"]["store_name"],
-      menu_name: params["foodrecord"]["menu_name"],
-      taste: params["foodrecord"]["taste"],
-      thickness: params["foodrecord"]["thickness"],
-      hardness: params["foodrecord"]["hardness"],
-      taste_intensity: params["foodrecord"]["taste_intensity"],
-      evalute: params["foodrecord"]["evalute"]
+      lineuser_id:      userid,
+      store_name:       params["foodrecord"]["store_name"],
+      menu_name:        params["foodrecord"]["menu_name"],
+      taste:            params["foodrecord"]["taste"],
+      thickness:        params["foodrecord"]["thickness"],
+      hardness:         params["foodrecord"]["hardness"],
+      taste_intensity:  params["foodrecord"]["taste_intensity"],
+      evalute:          params["foodrecord"]["evalute"]
     )
 
-    menu = Linemenu.new
-    message = menu.search_result(result)
+    message = Linemenu.search_result(result)
+    Temp.create(userid:userid,payload:message)
 
     client.push_message(userid, message)
   end
 
   def search
     @food = Foodrecord.new
-    @taste_list = ["醤油","味噌","とんこつ","塩"]
+    @taste_list = ["醤油","味噌","とんこつ","塩","その他"]
     @thickness_list = ["細麺","中太麺","太麺"]
     @hardness_list = ["硬め","柔らかめ"]
     @taste_intensity_list = ["こってり","あっさり"]
@@ -90,7 +146,7 @@ class LinebotController < ApplicationController
 
   def new
     @food = Foodrecord.new
-    @taste_list = ["醤油","味噌","とんこつ","塩"]
+    @taste_list = ["醤油","味噌","とんこつ","塩","その他"]
     @thickness_list = ["細麺","中太麺","太麺"]
     @hardness_list = ["硬め","柔らかめ"]
     @taste_intensity_list = ["こってり","あっさり"]
