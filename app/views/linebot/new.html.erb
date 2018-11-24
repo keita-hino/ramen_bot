@@ -41,28 +41,6 @@
         </div>
       </div>
 
-        <script>
-            liff.init(
-              data => {
-                // Now you can call LIFF API
-                const userId = data.context.userId;
-                // document.getElementById('foodrecord_lineuser_id').value = "test";
-                document.getElementById('userid').value = userId;
-                liff.getProfile()
-                .then(profile => {
-                  document.getElementById('user_name').innerText = 'Name : ' + profile.displayName;
-                  const name = profile.displayName
-                  document.getElementById('user_photo').src = profile.pictureUrl;
-                })
-                .catch((err) => {
-                  console.log('error', err);
-                });
-              },
-              err => {
-                // LIFF initialization failed
-              }
-            );
-        </script>
     </body>
 
 </html>
