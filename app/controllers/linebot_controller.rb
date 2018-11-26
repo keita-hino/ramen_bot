@@ -20,13 +20,12 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
-
+    user_id = events[0]["source"]["userId"]
     events.each { |event|
       case event
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          # menu = Linemenu.new
           case event.message['text']
           when '入力','write'
             message = Linemenu.search_form(ENV['RAMEN_LIFF_URL_CREATE'],"入力")
@@ -35,7 +34,6 @@ class LinebotController < ApplicationController
             message = Linemenu.search_form(ENV['RAMEN_LIFF_URL_SEARCH'],"参照")
             client.reply_message(event['replyToken'], message)
           when /【SHARE】/
-            user_id = event["source"]["userId"]
             keyword = event.message['text']
             pat = /(【.*】)(.*)/
             keyword =~ pat
@@ -92,7 +90,6 @@ class LinebotController < ApplicationController
         case events[0]["postback"]["data"]
         when "share"
           user_list = [{}]
-          user_id = event["source"]["userId"]
           a = Lineuser.all
 
           a.map do |v|
@@ -115,14 +112,11 @@ class LinebotController < ApplicationController
         end
 
       when Line::Bot::Event::Follow
-         user_id = event["source"]["userId"]
-         # unless Lineuser.exists?(userid:user_id)
-           lineuser = Lineuser.new(userid: user_id)
-           lineuser.save
-         # end
+         lineuser = Lineuser.new(userid: user_id)
+         lineuser.save
+
        # ブロックされた時の処理
        when Line::Bot::Event::Unfollow
-         user_id = event["source"]["userId"]
          Lineuser.where(userid: user_id).delete_all
       end
     }
@@ -131,9 +125,9 @@ class LinebotController < ApplicationController
   end
 
   def show
-    userid = params["foodrecord"]["lineuser_id"]
+    user_id = params["foodrecord"]["lineuser_id"]
     result = Foodrecord.food_search(
-      lineuser_id:      userid,
+      lineuser_id:      user_id,
       store_name:       params["foodrecord"]["store_name"],
       menu_name:        params["foodrecord"]["menu_name"],
       taste:            params["foodrecord"]["taste"],
@@ -144,9 +138,12 @@ class LinebotController < ApplicationController
     )
 
     message = Linemenu.search_result(result)
-    Temp.create(userid:userid,payload:message[1])
+    Temp.create(
+      userid:user_id,
+      payload:message[1]
+    )
 
-    client.push_message(userid, message[0])
+    client.push_message(user_id, message[0])
   end
 
   def search
