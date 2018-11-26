@@ -40,9 +40,11 @@ class LinebotController < ApplicationController
             pat = /(【.*】)(.*)/
             keyword =~ pat
             share_id = ""
+            my_name = ""
 
             a = Lineuser.all
 
+            # シェアする相手のuseridを取得
             a.map do |v|
               response = client.get_profile(v.userid)
               case response
@@ -56,6 +58,21 @@ class LinebotController < ApplicationController
                 p "#{response.code} #{response.body}"
               end
             end
+
+            # シェアする人のnameを取得
+            response = client.get_profile(user_id)
+            case response
+            when Net::HTTPSuccess then
+              contact = JSON.parse(response.body)
+              my_name =  contact['displayName']
+            else
+              p "#{response.code} #{response.body}"
+            end
+
+            client.push_message(share_id, {
+              type: "text",
+              text: "#{my_name}さんからシェアされました。"
+            })
 
             message = Temp.find_by_userid(user_id)
 
