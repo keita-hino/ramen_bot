@@ -1,0 +1,31 @@
+taste_list:
+  - 醤油
+  - 味噌
+  - とんこつ
+  - 塩
+  - その他
+
+thickness_list:
+  - 細麺
+  - 中太麺
+  - 太麺
+
+hardness_list:
+  - 硬め
+  - 柔らかめ
+
+taste_intensity_list:
+  - こってり
+  - あっさり
+
+evalute_list:
+  - 0.5
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+  - 3
+  - 3.5
+  - 4
+  - 4.5
+  - 5
