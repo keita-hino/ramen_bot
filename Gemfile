@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# 定数管理用
+gem 'config'
+
 # 画像圧縮用
 gem 'mini_magick'
 # 画像アップロード用
