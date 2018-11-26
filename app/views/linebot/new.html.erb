@@ -17,19 +17,19 @@
               <%= f.text_field :menu_name,size:"20"%><br>
 
               <%= f.label :"スープの味" %>
-              <%= f.select :taste, options_for_select(@taste_list),prompt:"選択してください" %><br>
+              <%= f.select :taste, options_for_select(Settings.taste_list),prompt:"選択してください" %><br>
 
               <%= f.label :"麺の太さ" %>
-              <%= f.select :thickness, options_for_select(@thickness_list),prompt:"選択してください" %><br>
+              <%= f.select :thickness, options_for_select(Settings.thickness_list),prompt:"選択してください" %><br>
 
               <%= f.label :"麺の硬さ" %>
-              <%= f.select :hardness, options_for_select(@hardness_list),prompt:"選択してください" %><br>
+              <%= f.select :hardness, options_for_select(Settings.hardness_list),prompt:"選択してください" %><br>
 
               <%= f.label :"味の濃さ" %>
-              <%= f.select :taste_intensity, options_for_select(@taste_intensity_list),prompt:"選択してください" %><br>
+              <%= f.select :taste_intensity, options_for_select(Settings.taste_intensity_list),prompt:"選択してください" %><br>
 
               <%= f.label :"総合評価" %>
-              <%= f.select :evalute, options_for_select(@evalute_list),prompt:"選択してください" %><br>
+              <%= f.select :evalute, options_for_select(Settings.evalute_list),prompt:"選択してください" %><br>
 
               <%= f.file_field :picture, id: :food_picture %>
 
