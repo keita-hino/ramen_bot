@@ -1,6 +1,9 @@
 class Foodrecord < ApplicationRecord
   mount_uploader :picture, PictureUploader
   belongs_to :lineuser, foreign_key: 'userid', class_name: 'Lineuser',optional: true
+  validates :store_name, presence: true
+  validates :menu_name, presence: true
+  validates :picture, presence: true
 
   def self.food_search(lineuser_id:,store_name:,menu_name:,taste:,thickness:,hardness:,taste_intensity:,evalute:)
     q = Foodrecord.where(lineuser_id: lineuser_id)
