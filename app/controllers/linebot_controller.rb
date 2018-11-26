@@ -151,31 +151,16 @@ class LinebotController < ApplicationController
 
   def search
     @food = Foodrecord.new
-    @taste_list = ["醤油","味噌","とんこつ","塩","その他"]
-    @thickness_list = ["細麺","中太麺","太麺"]
-    @hardness_list = ["硬め","柔らかめ"]
-    @taste_intensity_list = ["こってり","あっさり"]
-    @evalute_list = []
-    r = 1..10
-    r.each{|i| @evalute_list.push(i.to_f / 2)}
   end
 
   def new
     @food = Foodrecord.new
-    @taste_list = ["醤油","味噌","とんこつ","塩","その他"]
-    @thickness_list = ["細麺","中太麺","太麺"]
-    @hardness_list = ["硬め","柔らかめ"]
-    @taste_intensity_list = ["こってり","あっさり"]
-    @evalute_list = []
-    r = 1..10
-    r.each{|i| @evalute_list.push(i.to_f / 2)}
-    # @food.save
   end
 
   def create
     @food = Foodrecord.new(user_params)
     if @food.save
-      # redirect_to @food
+      redirect_to new_path, notice: "登録が完了しました"
     else
       render 'new'
     end
