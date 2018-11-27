@@ -1,4 +1,5 @@
 class LinebotController < ApplicationController
+  before_action :set_food, only: [:search, :new]
   require 'line/bot'  # gem 'line-bot-api'
 
   # callbackアクションのCSRFトークン認証を無効
@@ -147,11 +148,9 @@ class LinebotController < ApplicationController
   end
 
   def search
-    @food = Foodrecord.new
   end
 
   def new
-    @food = Foodrecord.new
   end
 
   def create
@@ -168,6 +167,10 @@ class LinebotController < ApplicationController
     def user_params
       params.require(:foodrecord).permit(:store_name,:menu_name, :taste, :thickness,
                                    :hardness,:taste_intensity,:evalute,:lineuser_id,:picture)
+    end
+
+    def set_food
+      @food = Foodrecord.new
     end
 
 end
