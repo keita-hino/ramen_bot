@@ -35,47 +35,25 @@ class LinebotController < ApplicationController
             message = Linemenu.search_form(ENV['RAMEN_LIFF_URL_SEARCH'],"参照")
             client.reply_message(event['replyToken'], message)
           when /【SHARE】/
-            share_id = ""
-            my_name = ""
             keyword = event.message['text']
             pat = /(【.*】)(.*)/
             keyword =~ pat
 
             users = Lineuser.all
-
-            # シェアする相手のuseridを取得
-            users.map do |v|
-              response = client.get_profile(v.userid)
-              case response
-              when Net::HTTPSuccess then
-                contact = JSON.parse(response.body)
-                if $2 == contact['displayName']
-                  share_id = v.userid
-                  break
-                end
-              else
-                p "#{response.code} #{response.body}"
-              end
-            end
-
-            # シェアする人のnameを取得
-            response = client.get_profile(user_id)
-            case response
-            when Net::HTTPSuccess then
-              contact = JSON.parse(response.body)
-              my_name =  contact['displayName']
-            else
-              p "#{response.code} #{response.body}"
-            end
+            req = Request.new(
+              client: client,
+              users: users,
+              share_name: $2
+            )
 
             client.push_message(share_id, {
               type: "text",
-              text: "#{my_name}さんからシェアされました。"
+              text: "#{req.my_name(user_id)}さんからシェアされました。"
             })
 
             message = Temp.find_by_userid(user_id)
 
-            client.push_message(share_id, message.payload)
+            client.push_message(req.share_id, message.payload)
             Temp.where(userid: user_id).delete_all
 
           else
@@ -90,22 +68,12 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Postback
         case events[0]["postback"]["data"]
         when "share"
-          user_list = [{}]
           users = Lineuser.all
-
-          users.map do |v|
-            response = client.get_profile(v.userid)
-            case response
-            when Net::HTTPSuccess then
-              contact = JSON.parse(response.body)
-              user_list.push({name:contact['displayName'],url:contact['pictureUrl']})
-            else
-              p "#{response.code} #{response.body}"
-            end
-          end
-          user_list.shift
-
-          message = Linemenu.share_reply(user_list)
+          req = Request.new(
+            client: client,
+            users: users
+          )
+          message = Linemenu.share_reply(req.user_list)
 
           client.push_message(user_id, message)
         else
