@@ -31,20 +31,20 @@ class LinebotController < ApplicationController
           when '入力','write'
             message = Linemenu.search_form(ENV['RAMEN_LIFF_URL_CREATE'],"入力")
             client.reply_message(event['replyToken'], message)
-          when '読み取り','参照','read'
+          when '読み取り','参照','read','show'
             message = Linemenu.search_form(ENV['RAMEN_LIFF_URL_SEARCH'],"参照")
             client.reply_message(event['replyToken'], message)
           when /【SHARE】/
+            share_id = ""
+            my_name = ""
             keyword = event.message['text']
             pat = /(【.*】)(.*)/
             keyword =~ pat
-            share_id = ""
-            my_name = ""
 
-            a = Lineuser.all
+            users = Lineuser.all
 
             # シェアする相手のuseridを取得
-            a.map do |v|
+            users.map do |v|
               response = client.get_profile(v.userid)
               case response
               when Net::HTTPSuccess then
@@ -91,9 +91,9 @@ class LinebotController < ApplicationController
         case events[0]["postback"]["data"]
         when "share"
           user_list = [{}]
-          a = Lineuser.all
+          users = Lineuser.all
 
-          a.map do |v|
+          users.map do |v|
             response = client.get_profile(v.userid)
             case response
             when Net::HTTPSuccess then
