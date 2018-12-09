@@ -46,7 +46,7 @@ class LinebotController < ApplicationController
               share_name: $2
             )
 
-            client.push_message(share_id, {
+            client.push_message(req.share_id, {
               type: "text",
               text: "#{req.my_name(user_id)}さんからシェアされました。"
             })
