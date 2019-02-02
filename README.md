@@ -1,25 +1,18 @@
 # [![Build Status](https://travis-ci.org/keita-hino/ramen_bot.svg?branch=master)](https://travis-ci.org/keita-hino/ramen_bot)
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+本ボットを使用することで、食べたラーメンの情報を登録・検索できます。
+また、検索結果は他の人に「シェアする」ボタンを押下することで、他の人にシェアすることはできます。
+入力画面
 
-Things you may want to cover:
 
-* Ruby version
+検索画面
 
-* System dependencies
 
-* Configuration
+検索結果画面
 
-* Database creation
 
-* Database initialization
+シェアする側
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+シェアされた側
