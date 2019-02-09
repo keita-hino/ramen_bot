@@ -1,8 +1,8 @@
 # [![Build Status](https://travis-ci.org/keita-hino/ramen_bot.svg?branch=master)](https://travis-ci.org/keita-hino/ramen_bot)
 # README
 
-本ボットを使用することで、食べたラーメンの情報を登録・検索できます。
-また、検索結果は他の人に「シェアする」ボタンを押下することで、他の人にシェアすることはできます。    
+本ボットを使用することで、食べたラーメンの情報を登録・検索できます。    
+また、「シェアする」ボタンを押下することで、他の人にシェアすることができます。    
 
 ・入力画面   
 ![default](https://user-images.githubusercontent.com/15973671/52162033-58d82b80-2711-11e9-872f-21bd2ae89e6a.PNG)
