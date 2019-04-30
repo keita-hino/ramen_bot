@@ -1,5 +1,5 @@
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/websocket-driver-0.7.0/ext/websocket-driver
-/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181126-62882-slniol.rb extconf.rb
+/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181209-39757-1inshot.rb extconf.rb
 creating Makefile
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/websocket-driver-0.7.0/ext/websocket-driver
@@ -12,4 +12,4 @@ linking shared-object websocket_mask.bundle
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/websocket-driver-0.7.0/ext/websocket-driver
 make "DESTDIR=" install
-/usr/local/bin/ginstall -c -m 0755 websocket_mask.bundle ./.gem.20181126-62882-117rpcj
+/usr/local/bin/ginstall -c -m 0755 websocket_mask.bundle ./.gem.20181209-39757-1ksi0jw

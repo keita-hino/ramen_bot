@@ -1,5 +1,5 @@
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
-/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181126-62882-1ilc9s3.rb extconf.rb
+/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181209-39757-1muj4x6.rb extconf.rb
 creating Makefile
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
@@ -12,4 +12,4 @@ linking shared-object bindex/cruby.bundle
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
 make "DESTDIR=" install
-/usr/local/bin/ginstall -c -m 0755 cruby.bundle ./.gem.20181126-62882-3ae5sd/bindex
+/usr/local/bin/ginstall -c -m 0755 cruby.bundle ./.gem.20181209-39757-wjy751/bindex

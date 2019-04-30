@@ -1,5 +1,5 @@
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/unf_ext-0.0.7.5/ext/unf_ext
-/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181126-62882-12ohfte.rb extconf.rb
+/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181209-39757-1op42wy.rb extconf.rb
 checking for -lstdc++... yes
 creating Makefile
 
@@ -35,4 +35,4 @@ linking shared-object unf_ext.bundle
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/unf_ext-0.0.7.5/ext/unf_ext
 make "DESTDIR=" install
-/usr/local/bin/ginstall -c -m 0755 unf_ext.bundle ./.gem.20181126-62882-1x1zjjc
+/usr/local/bin/ginstall -c -m 0755 unf_ext.bundle ./.gem.20181209-39757-tgge4d

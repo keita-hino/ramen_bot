@@ -1,5 +1,5 @@
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/msgpack-1.2.4/ext/msgpack
-/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181126-62882-n7g64n.rb extconf.rb
+/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181209-39757-11zu.rb extconf.rb
 checking for ruby/st.h... yes
 checking for st.h... yes
 checking for rb_str_replace() in ruby.h... yes
@@ -36,4 +36,4 @@ linking shared-object msgpack/msgpack.bundle
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/msgpack-1.2.4/ext/msgpack
 make "DESTDIR=" install
-/usr/local/bin/ginstall -c -m 0755 msgpack.bundle ./.gem.20181126-62882-1hhwc03/msgpack
+/usr/local/bin/ginstall -c -m 0755 msgpack.bundle ./.gem.20181209-39757-14wa698/msgpack

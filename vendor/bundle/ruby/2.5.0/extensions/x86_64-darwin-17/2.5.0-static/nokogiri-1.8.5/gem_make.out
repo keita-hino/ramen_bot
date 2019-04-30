@@ -1,5 +1,5 @@
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.8.5/ext/nokogiri
-/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181126-62882-1x15op4.rb extconf.rb --use-system-libraries
+/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181209-39757-l4wwm2.rb extconf.rb --use-system-libraries
 checking if the C compiler accepts ... yes
 checking if the C compiler accepts -Wno-error=unused-command-line-argument-hard-error-in-future... no
 Building nokogiri using system libraries.
@@ -49,31 +49,6 @@ compiling xml_comment.c
 compiling xml_document.c
 compiling xml_document_fragment.c
 compiling xml_dtd.c
-xml_dtd.c:47:47: warning: incompatible pointer types passing 'void (void *, void *, const xmlChar *)' (aka 'void (void *, void *, const unsigned char *)') to parameter of type 'xmlHashScanner' (aka 'void (*)(void *, void *, unsigned char *)') [-Wincompatible-pointer-types]
-  xmlHashScan((xmlHashTablePtr)dtd->entities, element_copier, (void *)hash);
-                                              ^~~~~~~~~~~~~~
-/usr/local/Cellar/libxml2/2.9.7/include/libxml2/libxml/hash.h:210:22: note: passing argument to parameter 'f' here
-                                         xmlHashScanner f,
-                                                        ^
-xml_dtd.c:69:48: warning: incompatible pointer types passing 'void (void *, void *, const xmlChar *)' (aka 'void (void *, void *, const unsigned char *)') to parameter of type 'xmlHashScanner' (aka 'void (*)(void *, void *, unsigned char *)') [-Wincompatible-pointer-types]
-  xmlHashScan((xmlHashTablePtr)dtd->notations, notation_copier, (void *)hash);
-                                               ^~~~~~~~~~~~~~~
-/usr/local/Cellar/libxml2/2.9.7/include/libxml2/libxml/hash.h:210:22: note: passing argument to parameter 'f' here
-                                         xmlHashScanner f,
-                                                        ^
-xml_dtd.c:91:49: warning: incompatible pointer types passing 'void (void *, void *, const xmlChar *)' (aka 'void (void *, void *, const unsigned char *)') to parameter of type 'xmlHashScanner' (aka 'void (*)(void *, void *, unsigned char *)') [-Wincompatible-pointer-types]
-  xmlHashScan((xmlHashTablePtr)dtd->attributes, element_copier, (void *)hash);
-                                                ^~~~~~~~~~~~~~
-/usr/local/Cellar/libxml2/2.9.7/include/libxml2/libxml/hash.h:210:22: note: passing argument to parameter 'f' here
-                                         xmlHashScanner f,
-                                                        ^
-xml_dtd.c:113:47: warning: incompatible pointer types passing 'void (void *, void *, const xmlChar *)' (aka 'void (void *, void *, const unsigned char *)') to parameter of type 'xmlHashScanner' (aka 'void (*)(void *, void *, unsigned char *)') [-Wincompatible-pointer-types]
-  xmlHashScan((xmlHashTablePtr)dtd->elements, element_copier, (void *)hash);
-                                              ^~~~~~~~~~~~~~
-/usr/local/Cellar/libxml2/2.9.7/include/libxml2/libxml/hash.h:210:22: note: passing argument to parameter 'f' here
-                                         xmlHashScanner f,
-                                                        ^
-4 warnings generated.
 compiling xml_element_content.c
 compiling xml_element_decl.c
 compiling xml_encoding_handler.c
@@ -101,4 +76,4 @@ rm -rf /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.8.5/ext/nokogiri
 make "DESTDIR=" install
-/usr/local/bin/ginstall -c -m 0755 nokogiri.bundle ./.gem.20181126-62882-1t9rk5/nokogiri
+/usr/local/bin/ginstall -c -m 0755 nokogiri.bundle ./.gem.20181209-39757-1ln8tuk/nokogiri

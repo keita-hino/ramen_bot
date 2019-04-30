@@ -1,5 +1,5 @@
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/byebug-10.0.2/ext/byebug
-/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181126-62882-1hmp6wq.rb extconf.rb
+/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181209-39757-hmbntw.rb extconf.rb
 creating Makefile
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/byebug-10.0.2/ext/byebug
@@ -16,4 +16,4 @@ linking shared-object byebug/byebug.bundle
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/byebug-10.0.2/ext/byebug
 make "DESTDIR=" install
-/usr/local/bin/ginstall -c -m 0755 byebug.bundle ./.gem.20181126-62882-edqr27/byebug
+/usr/local/bin/ginstall -c -m 0755 byebug.bundle ./.gem.20181209-39757-1tjcz78/byebug
