@@ -1,14 +1,22 @@
 class Foodrecord < ApplicationRecord
   mount_uploader :picture, PictureUploader
 
+  ####################################
   # リレーション
+  ####################################
   belongs_to :lineuser, foreign_key: 'userid', class_name: 'Lineuser',optional: true
 
+
+  ####################################
   # バリデーション
+  ####################################
   validates :store_name, presence: true
   validates :menu_name, presence: true
 
+
+  ####################################
   # スコープ
+  ####################################
   scope :lineuser_id_is, -> (lineuser_id) { where(lineuser_id:lineuser_id) }
 
   scope :store_name_match, -> (store_name) { where('store_name like ?', "%#{store_name}%") }
@@ -25,7 +33,10 @@ class Foodrecord < ApplicationRecord
 
   scope :evalute_is, -> (evalute) { where(evalute:(evalute).to_f..5) }
 
+
+  ####################################
   # メソッド
+  ####################################
   def self.food_search(lineuser_id:,store_name:,menu_name:,taste:,thickness:,hardness:,taste_intensity:,evalute:)
     query = Foodrecord.all
     query = query.lineuser_id_is(lineuser_id)
