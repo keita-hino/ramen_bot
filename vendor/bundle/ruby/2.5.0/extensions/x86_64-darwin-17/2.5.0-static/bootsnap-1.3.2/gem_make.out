@@ -1,5 +1,5 @@
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/ext/bootsnap
-/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181126-62882-1wvb2kp.rb extconf.rb
+/Users/hinokeita/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20181209-39757-1iwslvl.rb extconf.rb
 creating Makefile
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/ext/bootsnap
@@ -12,4 +12,4 @@ linking shared-object bootsnap/bootsnap.bundle
 
 current directory: /Users/hinokeita/Desktop/workspace/ramen_bot/ramen_bot/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/ext/bootsnap
 make "DESTDIR=" install
-/usr/local/bin/ginstall -c -m 0755 bootsnap.bundle ./.gem.20181126-62882-1vqqqur/bootsnap
+/usr/local/bin/ginstall -c -m 0755 bootsnap.bundle ./.gem.20181209-39757-1pu9ua0/bootsnap
